@@ -6,14 +6,14 @@
 // SortIncludes : Never
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/ip/tcp.hpp>
-#include <boost/asio/signal_set.hpp>
 #include <boost/asio/write.hpp>
+#include <boost/asio/signal_set.hpp>
 #include <map>
 #include <string>
 #include <vector>
 
-#include "AnotherHeader.h"
 #include "MyHeader.h"
+#include "AnotherHeader.h"
 
 // AlignConsecutiveMacros, true:
 #define SHORT_NAME       42
