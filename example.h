@@ -17,35 +17,35 @@
 // --- Enums ---
 typedef enum
 {
-	STATUS_OK,
-	STATUS_ERROR_INVALID_ARG,
-	STATUS_ERROR_FILE_NOT_FOUND,
-	STATUS_COUNT  // Used to determine the number of status codes
+    STATUS_OK,
+    STATUS_ERROR_INVALID_ARG,
+    STATUS_ERROR_FILE_NOT_FOUND,
+    STATUS_COUNT  // Used to determine the number of status codes
 } ModuleStatus_t;
 
 // --- Structs ---
 typedef struct
 {
-	char name[MAX_BUFFER_SIZE];
-	int id;
-	float value;
+    char name[MAX_BUFFER_SIZE];
+    int id;
+    float value;
 } DataRecord_t;
 
 // --- Unions ---
 typedef union
 {
-	int int_val;
-	float float_val;
-	char char_val;
+    int int_val;
+    float float_val;
+    char char_val;
 } MixedData_u;
 
 // --- Struct with Bit-fields ---
 typedef struct
 {
-	unsigned int is_active  : 1;  // 1-bit field
-	unsigned int error_code : 3;  // 3-bit field (0-7)
-	unsigned int reserved   : 4;  // 4-bit field
-	unsigned int user_id    : 8;  // 8-bit field
+    unsigned int is_active  : 1;  // 1-bit field
+    unsigned int error_code : 3;  // 3-bit field (0-7)
+    unsigned int reserved   : 4;  // 4-bit field
+    unsigned int user_id    : 8;  // 8-bit field
 } StatusFlags_t;
 
 // AlignArrayOfStructures: Never
@@ -65,8 +65,7 @@ extern const char *g_module_version;
  * @param initial_value An initial integer value.
  * @return ModuleStatus_t STATUS_OK on success, or an error code.
  */
-ModuleStatus_t
-module_init(int initial_value);
+ModuleStatus_t module_init(int initial_value);
 
 /**
  * @brief Processes a data record.
@@ -76,8 +75,7 @@ module_init(int initial_value);
  * @param record A pointer to the DataRecord_t to process.
  * @return int The processed record ID, or -1 on error.
  */
-int
-process_data_record(DataRecord_t *record);
+int process_data_record(DataRecord_t *record);
 
 /**
  * @brief Performs a generic operation with different data types using a union.
@@ -87,8 +85,7 @@ process_data_record(DataRecord_t *record);
  * for char).
  * @return float The result of the operation.
  */
-float
-perform_union_operation(MixedData_u data, int type);
+float perform_union_operation(MixedData_u data, int type);
 
 /**
  * @brief Sets the status flags for a given ID.
@@ -96,8 +93,7 @@ perform_union_operation(MixedData_u data, int type);
  * @param id The ID to set flags for.
  * @param flags The StatusFlags_t to apply.
  */
-void
-set_status_flags(int id, StatusFlags_t flags);
+void set_status_flags(int id, StatusFlags_t flags);
 
 /**
  * @brief Compares two DataRecord_t structures using a provided comparison
@@ -109,8 +105,7 @@ set_status_flags(int id, StatusFlags_t flags);
  * @return int Result of the comparison (negative if record1 < record2, 0 if
  * equal, positive if record1 > record2).
  */
-int
-compare_records(const DataRecord_t *record1, const DataRecord_t *record2, ComparisonFunction_t compare_func);
+int compare_records(const DataRecord_t *record1, const DataRecord_t *record2, ComparisonFunction_t compare_func);
 
 /**
  * @brief Prints a variable number of integers to the console.
@@ -121,13 +116,11 @@ compare_records(const DataRecord_t *record1, const DataRecord_t *record2, Compar
  * @param count The number of integers to print.
  * @param ... The integers to print.
  */
-void
-print_variadic_integers(int count, ...);
+void print_variadic_integers(int count, ...);
 
 /**
  * @brief Cleans up any resources allocated by the module.
  */
-void
-module_cleanup(void);
+void module_cleanup(void);
 
 #endif  // MY_MODULE_H
